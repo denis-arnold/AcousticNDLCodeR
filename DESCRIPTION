@@ -3,7 +3,8 @@ Type: Package
 Title: Coding Sound Files for Use with NDL
 Version: 1.0.2
 Date: 2018-02-28
-Authors@R: person("Denis", "Arnold", email="arnold@ids-mannheim.de", role = c("aut","dtc","cre"))
+Authors@R: c(person("Denis", "Arnold", email="arnold@ids-mannheim.de", role = c("aut","dtc","cre")),
+             person("Elnaz","Shafaei Bajestan",email="elnaz.shafaei-bajestan@uni-tuebingen.de",role=c("ctb")))
 Maintainer: Denis Arnold <arnold@ids-mannheim.de>
 Depends: R (>= 3.0.0)
 Description: Make acoustic cues to use with the R packages 'ndl' or 'ndl2'. The package implements functions used
