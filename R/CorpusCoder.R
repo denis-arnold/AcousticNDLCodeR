@@ -74,6 +74,7 @@ CorpusCoder=function(Waves,Annotations,AnnotationType=c("TextGrid","ESPS"),TierN
         stop(paste0("TierName ",TierName," is not prestent in TextGrid:", Annotations[i]))
       }
       Part=TG[[which(TG[[1]]==TierName)+1]]
+      if(length(Part$Outcomes)<2) next
     }  
     Part$File=Waves[i]
     Part$Prev=c("<P>",Part$Outcomes[1:(length(Part$Outcomes)-1)])
@@ -82,6 +83,7 @@ CorpusCoder=function(Waves,Annotations,AnnotationType=c("TextGrid","ESPS"),TierN
         Part=Part[-grep(Dismiss,Part$Outcomes),]
       }
     }
+    if(length(Part$Outcomes)==0) next
     Wave=readWave(Waves[i])
     if(Wave@samp.rate!=16000){
       if(Wave@samp.rate<16000){

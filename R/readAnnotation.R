@@ -19,16 +19,16 @@ readTextGridFast<-function(File,Encoding){
   Data=readLines(File,-1)
   close(File)
   
-  names=gsub("^[\\ ]+name\\ =\\ |\"|[\\ ]+","",Data[grep("name\ =",Data)])
+  names=gsub("^[[:space:]]+name\\ =\\ |\"|[\\ ]+","",Data[grep("name\ =",Data)])
   numberOfTiers=length(names)
   TierBorder=c(grep("IntervalTier|TextTier",Data),length(Data))
-  TierType=gsub("[\\ ]+|class|\\=|\"|-","",Data[grep("IntervalTier|TextTier",Data)])
+  TierType=gsub("[[:space:]]+|class|\\=|\"|-","",Data[grep("IntervalTier|TextTier",Data)])
   
   for(i in 1:numberOfTiers){
     if(TierType[i]=="IntervalTier"){
       Part=Data[TierBorder[i]:TierBorder[i+1]]
       Part=Part[-(1:5)]
-      Part=gsub("^[\\ ]+((text)|(xmin)|(xmax))\\ =\\ |\"|[\\ ]+$","",Part)
+      Part=gsub("^[[:space:]]+((text)|(xmin)|(xmax))\\ =\\ |\"|[\\ ]+$","",Part)
       Part=gsub("[\\ ]+$","",Part)
       if(length(grep("class\ =\ (IntervalTier)|(TextTier)",Part))>0){
         Part=Part[-grep("class\ =\ (IntervalTier)|(TextTier)",Part)]
@@ -44,7 +44,7 @@ readTextGridFast<-function(File,Encoding){
     else{
       Part=Data[TierBorder[i]:TierBorder[i+1]]
       Part=Part[-(1:5)]
-      Part=gsub("^[\\ ]+((mark)|(number))\\ =\\ |\"|[\\ ]+$","",Part)
+      Part=gsub("^[[:space:]]+((mark)|(number))\\ =\\ |\"|[\\ ]+$","",Part)
       Part=gsub("[\\ ]+$","",Part)
       if(length(grep("class\ =\ (IntervalTier)|(TextTier)",Part))>0){
         Part=Part[-grep("class\ =\ (IntervalTier)|(TextTier)",Part)]
@@ -88,16 +88,16 @@ readTextGridFast<-function(File,Encoding){
 readTextGridRobust<-function(File,Encoding){
   
   Data=read.csv(file(File,encoding=Encoding),stringsAsFactors=F,header=F)$V1
-  names=gsub("^[\\ ]+name\\ =\\ |\"|[\\ ]+","",Data[grep("name\ =",Data)])
+  names=gsub("^[[:space:]]+name\\ =\\ |\"|[\\ ]+","",Data[grep("name\ =",Data)])
   numberOfTiers=length(names)
   TierBorder=c(grep("IntervalTier|TextTier",Data),length(Data)+1)
-  TierType=gsub("[\\ ]+|class|\\=|\"|-","",Data[grep("IntervalTier|TextTier",Data)])
+  TierType=gsub("[[:space:]]+|class|\\=|\"|-","",Data[grep("IntervalTier|TextTier",Data)])
   
   for(i in 1:numberOfTiers){
     if(TierType[i]=="IntervalTier"){
       Part=Data[TierBorder[i]:(TierBorder[i+1]-1)]
       Part=Part[-(1:5)]
-      Part=gsub("^[\\ ]+((text)|(xmin)|(xmax))\\ =\\ |\"|[\\ ]+$","",Part)
+      Part=gsub("^[[:space:]]+((text)|(xmin)|(xmax))\\ =\\ |\"|[\\ ]+$","",Part)
       Part=gsub("[\\ ]+$","",Part)
       PartDataFrame=data.frame(Outcomes=character(),start=numeric(),end=numeric(),stringsAsFactors=F)
       for(j in 1:(length(Part)/4)){
@@ -113,7 +113,7 @@ readTextGridRobust<-function(File,Encoding){
     else{
       Part=Data[TierBorder[i]:(TierBorder[i+1]-1)]
       Part=Part[-(1:5)]
-      Part=gsub("^[\\ ]+((mark)|(number))\\ =\\ |\"|[\\ ]+$","",Part)
+      Part=gsub("^[[:space:]]+((mark)|(number))\\ =\\ |\"|[\\ ]+$","",Part)
       Part=gsub("[\\ ]+$","",Part)
       PartDataFrame=data.frame(Outcomes="",point=0,stringsAsFactors=F)
       for(j in 1:(length(Part)/3)){
