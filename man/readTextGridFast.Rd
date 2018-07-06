@@ -18,7 +18,7 @@ A list containing a vectors with the names and data.frames for each tier in the 
 Reads a TextGrid made with praat and returns a list with a vector of all tier names and a data.frame for each tier.
 }
 \details{
-This method has sometimes problems with certain sequences like "\n" in the annotation file. 
+This method has sometimes problems with certain sequences like "\\n" in the annotation file. 
 If the method fails, try readTextGridRobust()
 }
 \examples{

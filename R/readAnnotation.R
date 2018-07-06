@@ -1,7 +1,7 @@
 #' Reads a TextGrid made with praat and returns a list with a vector of all tier names and a data.frame for each tier.
 #' @param File Name (with full path, if not in wd) of the TextGrid
 #' @param Encoding Encoding of the TextGrid. Typically encodings are "ACSII","UTF-8" or "UTF-16"
-#' @details This method has sometimes problems with certain sequences like "\n" in the annotation file. 
+#' @details This method has sometimes problems with certain sequences like "\\n" in the annotation file. 
 #' If the method fails, try readTextGridRobust()
 #' @return A list containing a vectors with the names and data.frames for each tier in the TextGrid.
 #' @examples 

@@ -71,7 +71,7 @@ CorpusCoder=function(Waves,Annotations,AnnotationType=c("TextGrid","ESPS"),TierN
         TG=readTextGridRobust(Annotations[i],Encoding)
       }
       if(!(TierName%in%TG[[1]])){
-        stop(paste0("TierName ",TierName," is not prestent in TextGrid:", Annotations[i]))
+        stop(paste0("TierName ",TierName," is not present in TextGrid:", Annotations[i]))
       }
       Part=TG[[which(TG[[1]]==TierName)+1]]
       if(length(Part$Outcomes)<2) next
